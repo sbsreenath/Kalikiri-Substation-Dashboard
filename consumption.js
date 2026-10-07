@@ -342,9 +342,7 @@ font-size:18px;white-space:nowrap;">(7) Interruptions </span><span>=</span>
 
 <div style="margin-top:25px;text-align:center;color:#4b2a73;
 font-weight:bold;line-height:1.5;">
-<div>    S B SREENATH    </div>
-<div>  DEE SHIFT 400KV SS </div>
-<div>      KALIKIRI      </div>
+${reportName.value}<br> Deputy Executive Engineer<br>400KV SS Kalikiri.
 </div>
 
 </body>
