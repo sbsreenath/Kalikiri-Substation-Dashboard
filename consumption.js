@@ -130,7 +130,7 @@ report+="\n *(5) 400 KV Bus Vlotages:*\n"
 report +="\n Maximum="+Number(maxvoltage.value).toFixed(2)+"KV @"+formatReportTime(maxvoltagetime.value)+"Hrs.";
 report +="\n Minimum="+Number(minvoltage.value).toFixed(2)+"KV @"+formatReportTime(minvoltagetime.value)+"Hrs.";
 report +="\n\n *(6) 400KV Bus Reactor*="+busreactor.value+"\n";
-report +="\n *(7) Interruptions*= NIL\n";
+report +="\n *(7) Interruptions*= "+ interruptions.value+"\n";
 report+="\n\n"+reportName.value;
 report+="\n Deputy Executive Engineer";
 report+="\n 400KV SS Kalikiri";
