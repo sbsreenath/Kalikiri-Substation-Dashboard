@@ -340,8 +340,8 @@ font-size:18px;white-space:nowrap;">(7) Interruptions </span><span>=</span>
 
 <br>
 
-<div style="margin-top:25px;text-align:center;color:#4b2a73;
-font-weight:bold;line-height:1.5;">
+<div style="margin-top:30px auto 0;text-align:center;color:#4b2a73;
+font-weight:bold;line-height:1.6;width:400px;">
 ${reportName.value}<br> Deputy Executive Engineer<br>400KV SS Kalikiri.
 </div>
 
