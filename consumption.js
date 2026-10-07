@@ -100,11 +100,12 @@ let generateReport=
 document.getElementById("generateReport");
 generateReport.addEventListener("click",generateReportFunction);
 function generateReportFunction(){
-let report="Good Morning Sir.";
+let report="*Good Morning Sir.*\n";
 let reportDate=new Date();
 reportDate=
 String(reportDate.getDate()).padStart(2,"0")+"/" +String(reportDate.getMonth()+1).padStart(2,"0")+"/" +reportDate.getFullYear();
-report +="\n 400KV SS Kalikiri Consumption Particulars on "   +reportDate +":";
+report +="\n *400KV SS Kalikiri Consumption Particulars on "   +reportDate +":*\n\n";
+report+="\n *(1) IMPORT*\n";
 report +="\n RTPP-1="+rtpp1.value+"MU";
 report +="\n RTPP-2="+rtpp2.value+"MU";
 report +="\n Chittoor-1="+chittoor1.value+"MU";
@@ -112,6 +113,7 @@ report +="\n Chittoor-2="+chittoor2.value+"MU";
 report +="\n 400KV Import="+Number(import400.value).toFixed(3)+"MU";
 report +="\n ICTs Import="+Number(importict.value).toFixed(3)+"MU";
 report +="\n TOTAL IMPORT="+Number(totalImport.value).toFixed(3)+"MU";
+report+="\n\n *(2) EXPORT*\n";
 report +="\n RTPP-1="+rtpp1export.value+"MU";
 report +="\n RTPP-2="+rtpp2export.value+"MU";
 report +="\n Chittoor-1="+chittoor1export.value+"MU";
@@ -119,14 +121,16 @@ report +="\n Chittoor-2="+chittoor2export.value+"MU";
 report +="\n 400KV Export="+Number(export400.value).toFixed(3)+"MU";
 report +="\n ICTs Export="+Number(exportict.value).toFixed(3)+"MU";
 report +="\n TOTAL EXPORT="+Number(totalexport.value).toFixed(3)+"MU";
-report +="\n MD on ICTs="+Number(mdict.value).toFixed(2)+"MW @" +formatReportTime(mdictime.value)+"Hrs.";
+report +="\n\n *(3) MD on ICTs*="+Number(mdict.value).toFixed(2)+"MW @" +formatReportTime(mdictime.value)+"Hrs.\n";
 report +="\n 315 MVA ICT-1="+Number(mdict1.value).toFixed(2)+"MW.";
 report +="\n 315 MVA ICT-2="+Number(mdict2.value).toFixed(2)+"MW.";
-report +="\n Total Generation Units="+Number(totalgeneration.value).toFixed(3)+"MU";
+report +="\n\n *(4) Total Generation Units*="+Number(totalgeneration.value).toFixed(3)+"MU\n";
+report+="\n *(5) 400 KV Bus Vlotages:*\n"
 report +="\n Maximum="+Number(maxvoltage.value).toFixed(2)+"KV @"+formatReportTime(maxvoltagetime.value)+"Hrs.";
 report +="\n Minimum="+Number(minvoltage.value).toFixed(2)+"KV @"+formatReportTime(minvoltagetime.value)+"Hrs.";
-report +="\n 400KV Bus Reactor="+busreactor.value;
-report +="\n Interruptions= NIL";
+report +="\n\n *(6) 400KV Bus Reactor*="+busreactor.value+"\n";
+report +="\n *(7) Interruptions*= NIL\n";
+window.lastReport=report;
 let reportWindow = window.open("", "_blank", "width=900,height=900");
 reportWindow.document.write(`
 <html>
@@ -381,6 +385,19 @@ changeStatus.onclick=function(){
 interruptions.addEventListener("input",function(){
     this.style.height="auto";
     this.style.height=this.scrollHeight+"px";
+});
+const shareWhatsApp = document.getElementById("shareWhatsApp");
+
+shareWhatsApp.addEventListener("click", function () {
+    if (!window.lastReport) {
+        alert("Please Generate Report first.");
+        return;
+    }
+
+    const whatsappUrl =
+        "https://wa.me/?text=" + encodeURIComponent(window.lastReport);
+
+    window.open(whatsappUrl, "_blank");
 });
 
 
