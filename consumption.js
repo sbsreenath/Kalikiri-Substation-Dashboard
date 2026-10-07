@@ -92,6 +92,7 @@ rtpp1.addEventListener("input",calculategeneration);
 rtpp2.addEventListener("input",calculategeneration);
 calculategeneration();
 let interruptions=document.getElementById("Interruptions");
+let reportName=document.getElementById("reportName");
 function formatReportTime(time){
     if (time==="00:00"){ return "24:00";}
     return time;
@@ -130,6 +131,9 @@ report +="\n Maximum="+Number(maxvoltage.value).toFixed(2)+"KV @"+formatReportTi
 report +="\n Minimum="+Number(minvoltage.value).toFixed(2)+"KV @"+formatReportTime(minvoltagetime.value)+"Hrs.";
 report +="\n\n *(6) 400KV Bus Reactor*="+busreactor.value+"\n";
 report +="\n *(7) Interruptions*= NIL\n";
+report+="\n\n"+reportName.value;
+report+="\n Deputy Executive Engineer";
+report+="\n 400KV SS Kalikiri";
 window.lastReport=report;
 let reportWindow = window.open("", "_blank", "width=900,height=900");
 reportWindow.document.write(`
