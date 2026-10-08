@@ -101,37 +101,42 @@ let generateReport=
 document.getElementById("generateReport");
 generateReport.addEventListener("click",generateReportFunction);
 function generateReportFunction(){
+    function formatLine(name,value,unit="MU"){
+        const namePart=name.padEnd(20," ");
+        const valuePart=Number(value).toFixed(3).padStart(6," ");
+        return namePart + " = " +valuePart + " " + unit;
+    }
 let report="*Good Morning Sir.*\n";
 let reportDate=new Date();
 reportDate=
 String(reportDate.getDate()).padStart(2,"0")+"/" +String(reportDate.getMonth()+1).padStart(2,"0")+"/" +reportDate.getFullYear();
-report +="\n *400KV SS Kalikiri Consumption Particulars on "   +reportDate +":*\n\n";
-report+="\n *(1) IMPORT*\n";
-report +="\n RTPP-1="+rtpp1.value+"MU";
-report +="\n RTPP-2="+rtpp2.value+"MU";
-report +="\n Chittoor-1="+chittoor1.value+"MU";
-report +="\n Chittoor-2="+chittoor2.value+"MU";
-report +="\n 400KV Import="+Number(import400.value).toFixed(3)+"MU";
-report +="\n ICTs Import="+Number(importict.value).toFixed(3)+"MU";
-report +="\n TOTAL IMPORT="+Number(totalImport.value).toFixed(3)+"MU";
-report+="\n\n *(2) EXPORT*\n";
-report +="\n RTPP-1="+rtpp1export.value+"MU";
-report +="\n RTPP-2="+rtpp2export.value+"MU";
-report +="\n Chittoor-1="+chittoor1export.value+"MU";
-report +="\n Chittoor-2="+chittoor2export.value+"MU";
-report +="\n 400KV Export="+Number(export400.value).toFixed(3)+"MU";
-report +="\n ICTs Export="+Number(exportict.value).toFixed(3)+"MU";
-report +="\n TOTAL EXPORT="+Number(totalexport.value).toFixed(3)+"MU";
-report +="\n\n *(3) MD on ICTs*="+Number(mdict.value).toFixed(2)+"MW @" +formatReportTime(mdictime.value)+"Hrs.\n";
-report +="\n 315 MVA ICT-1="+Number(mdict1.value).toFixed(2)+"MW.";
-report +="\n 315 MVA ICT-2="+Number(mdict2.value).toFixed(2)+"MW.";
-report +="\n\n *(4) Total Generation Units*="+Number(totalgeneration.value).toFixed(3)+"MU\n";
-report+="\n *(5) 400 KV Bus Vlotages:*\n"
-report +="\n Maximum="+Number(maxvoltage.value).toFixed(2)+"KV @"+formatReportTime(maxvoltagetime.value)+"Hrs.";
-report +="\n Minimum="+Number(minvoltage.value).toFixed(2)+"KV @"+formatReportTime(minvoltagetime.value)+"Hrs.";
-report +="\n\n *(6) 400KV Bus Reactor*="+busreactor.value+"\n";
-report +="\n *(7) Interruptions*= "+ interruptions.value+"\n";
-report+="\n\n"+reportName.value;
+report +="\n*400KV SS Kalikiri Consumption Particulars on "   +reportDate +":*\n\n";
+report+= "\n*1. IMPORT*\n";
+report += "\n" + formatLine("RTPP-1", rtpp1.value);
+report += "\n" + formatLine("RTPP-2", rtpp2.value);
+report += "\n" + formatLine("Chittoor-1", chittoor1.value);
+report += "\n" + formatLine("Chittoor-2", chittoor2.value);
+report += "\n" + formatLine("400KV Import", import400.value);
+report += "\n" + formatLine("ICTs Import", importict.value);
+report += "\n" + formatLine("TOTAL IMPORT", totalImport.value);
+report+="\n\n*2. EXPORT*\n";
+report +="\nRTPP-1="+Number(rtpp1export.value).toFixed(3)+"MU";
+report +="\nRTPP-2="+Number(rtpp2export.value).toFixed(3)+"MU";
+report +="\nChittoor-1="+Number(chittoor1export.value).toFixed(3)+"MU";
+report +="\nChittoor-2="+Number(chittoor1export.value).toFixed(3)+"MU";
+report +="\n400KV Export="+Number(export400.value).toFixed(3)+"MU";
+report +="\nICTs Export="+Number(exportict.value).toFixed(3)+"MU";
+report +="\nTOTAL EXPORT="+Number(totalexport.value).toFixed(3)+"MU";
+report +="\n\n*3. MD on ICTs* = "+Number(mdict.value).toFixed(2)+" MW  @"+formatReportTime(mdictime.value)+" Hrs.\n";
+report +="\n 315 MVA ICT-1= "+Number(mdict1.value).toFixed(2)+ "MW.";
+report +="\n 315 MVA ICT-2= "+Number(mdict2.value).toFixed(2)+ "MW.";
+report +="\n\n*4. Total Generation Units*     = "+Number(totalgeneration.value).toFixed(3)+ " MU\n";
+report+="\n\n*5. 400 KV Bus Vlotages:*\n"
+report +="\n Maximum = "+Number(maxvoltage.value).toFixed(2)+" KV @"+formatReportTime(maxvoltagetime.value)+" Hrs.";
+report +="\n Minimum = "+Number(minvoltage.value).toFixed(2)+" KV @"+formatReportTime(minvoltagetime.value)+" Hrs.";
+report +="\n\n*6. 400KV Bus Reactor* : "+busreactor.value+"\n";
+report +="\n\n*7. Interruptions* : "+ interruptions.value+"\n";
+report+="\n "+reportName.value;
 report+="\n Deputy Executive Engineer";
 report+="\n 400KV SS Kalikiri";
 window.lastReport=report;
@@ -146,11 +151,14 @@ body {
     font-family: Arial, sans-serif;
     margin: 40px;
     font-size: 16px;
+    white-space: pre-wrap;
 }
 
 .report {
     width: 800px;
     margin: auto;
+    font-family: "Courier New",monospace;
+    White-space: pre;
 }
 
 .title {
@@ -396,10 +404,96 @@ shareWhatsApp.addEventListener("click", function () {
         return;
     }
 
-    const whatsappUrl =
-        "https://wa.me/?text=" + encodeURIComponent(window.lastReport);
+function whatsappFormat(report) {
 
-    window.open(whatsappUrl, "_blank");
+    function line(name, value) {
+        const valuePart = Number(value).toFixed(3).padStart(6, " ");
+        return name.padEnd(14, " ") + " = " + valuePart + " MU";
+    }
+
+    function blankLine(name) {
+        return name.padEnd(14, " ") + " =       MU";
+    }
+
+    return report
+        .replace(/^\s*\(1\)IMPORT/m,"(1) IMPORT")
+
+        // IMPORT
+        .replace(/RTPP-1\s*=\s*([0-9.]+)\s*MU/g,
+            (_, value) => line("RTPP-1", value))
+
+        .replace(/RTPP-2\s*=\s*([0-9.]+)\s*MU/g,
+            (_, value) => line("RTPP-2", value))
+
+        .replace(/Chittoor-1\s*=\s*([0-9.]+)\s*MU/g,
+            (_, value) => line("Chittoor-1", value))
+
+        .replace(/Chittoor-2\s*=\s*([0-9.]+)\s*MU/g,
+            (_, value) => line("Chittoor-2", value))
+
+        .replace(/400KV Import\s*=\s*([0-9.]+)\s*MU/g,
+            (_, value) => line("400KV Import", value))
+
+        .replace(/ICTs Import\s*=\s*([0-9.]+)\s*MU/g,
+            (_, value) => line("ICTs Import", value))
+
+        .replace(/TOTAL IMPORT\s*=\s*([0-9.]+)\s*MU/g,
+            (_, value) => line("TOTAL IMPORT", value))
+
+        // EXPORT
+        .replace(/RTPP-1\s*=\s*MU/g,
+            () => blankLine("RTPP-1"))
+
+        .replace(/RTPP-2\s*=\s*MU/g,
+            () => blankLine("RTPP-2"))
+
+        .replace(/Chittoor-1\s*=\s*MU/g,
+            () => blankLine("Chittoor-1"))
+
+        .replace(/Chittoor-2\s*=\s*MU/g,
+            () => blankLine("Chittoor-2"))
+        
+        .replace(/400KV Export\s*=\s*([0-9.]+)\s*MU/g,
+        (_, value) => line("400KV Export", value))
+
+        .replace(/ICTs Export\s*=\s*([0-9.]+)\s*MU/g,
+        (_, value) => line("ICTs Export", value))
+
+        .replace(/TOTAL EXPORT\s*=\s*([0-9.]+)\s*MU/g,
+        (_, value) => line("TOTAL EXPORT", value))
+
+        .replace(/MD on ICTs\s*=\s*([0-9.]+)MW\s*@\s*([0-9]+):([0-9]+)Hrs\./g,
+(_, value, hour, minute) => `MD on ICTs = ${value} MW @ ${hour}:${minute} Hrs.`)
+
+.replace(/315 MVA ICT-1\s*=\s*([0-9.]+)\s*MW\./g,
+    (_, value) => `315 MVA ICT-1 = ${value} MW.`)
+
+.replace(/315 MVA ICT-2\s*=\s*([0-9.]+)\s*MW\./g,
+    (_, value) => `315 MVA ICT-2 = ${value} MW.`)
+
+.replace(/Total Generation Units\s*=\s*([0-9.]+)\s*MU/g,
+    (_, value) => `Total Generation Units = ${value} MU`)
+
+.replace(/Maximum\s*=\s*([0-9.]+)\s*KV\s*@\s*([0-9]+):([0-9]+)\s*Hrs\./g,
+    (_, value, hour, minute) =>` Maximum = ${value} KV @ ${hour}:${minute} Hrs.`)
+
+.replace(/Minimum\s*=\s*([0-9.]+)\s*KV\s*@\s*([0-9]+):([0-9]+)\s*Hrs\./g,
+    (_, value, hour, minute) => `Minimum = ${value} KV @ ${hour}:${minute} Hrs.`)
+
+.replace(/400KV Bus Reactor\s*=\s*/g,
+    "400KV Bus Reactor = ")
+
+.replace(/Interruptions\s*=\s*/g,
+    "Interruptions = ");
+}
+
+const whatsappText = "```" + whatsappFormat(window.lastReport).replace(/\*/g, "").replace(/\n@/g, " @") + "```";
+
+const whatsappUrl =
+    "https://wa.me/?text=" + encodeURIComponent(whatsappText);
+
+window.open(whatsappUrl, "_blank");
+
 });
 
 
