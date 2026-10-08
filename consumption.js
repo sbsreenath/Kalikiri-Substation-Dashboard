@@ -107,7 +107,7 @@ function generateReportFunction(){
         return namePart + " = " +valuePart + " " + unit;
     }
 let report="*Good Morning Sir.*\n";
-let reportDate=new Date();
+let reportDate=new Date(document.getElementById("reportDate").value + "T00:00:00");
 reportDate=
 String(reportDate.getDate()).padStart(2,"0")+"/" +String(reportDate.getMonth()+1).padStart(2,"0")+"/" +reportDate.getFullYear();
 report +="\n*400KV SS Kalikiri Consumption Particulars on "   +reportDate +":*\n\n";
