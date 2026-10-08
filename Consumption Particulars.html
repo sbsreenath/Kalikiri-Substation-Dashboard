@@ -19,6 +19,19 @@
     <h1>400 KV SS Kalikiri Consumption Particulars on <form>
         <label> Date</label>
         <input type="date" id="reportDate">
+        <label>Test Message</label>
+
+<textarea
+    id="testMessage"
+    rows="8"
+    placeholder="Paste today's test message here...">
+</textarea>
+
+<button
+    type="button"
+    id="autoFill">
+    AUTO FILL
+</button>
     </form></h1>
     <p id="dateTime"></p>
     <h2>(1)<u>IMPORT</u></h2>
@@ -101,7 +114,7 @@
     <div class="reading">
         <label>Maximum =</label>
         <input type="number" step="0.001" id="maxvoltage">KV @
-        <input type="time" id="maxvoltagetime">Hrs
+        <input type="text" id="maxvoltagetime">Hrs
     </div>
     <div class="reading">
         <label>Minimum =</label>
