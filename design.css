@@ -50,3 +50,187 @@ label{
     font-weight: bold;
     text-decoration: underline;
 }
+
+/* Monthly Calendar */
+#calendarBox {
+    position: fixed;
+    top: 110px;
+    right: 12px;
+    width: 215px;
+    padding: 7px;
+    background: #ffffff;
+    color: #222222;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    box-sizing: border-box;
+    
+}
+
+.calendarHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.calendarHeader h3 {
+    margin: 0;
+    font-size: 17px;
+    text-align: center;
+}
+
+.calendarHeader button {
+    cursor: pointer;
+    padding: 5px 9px;
+    border: none;
+    border-radius: 5px;
+    background: #176b45;
+    color: white;
+}
+
+#calendarDays {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 4px;
+}
+
+.calendarWeekday,
+.calendarDay {
+    text-align: center;
+    padding: 7px 0;
+    font-size: 13px;
+}
+
+.calendarWeekday {
+    font-weight: bold;
+    color: #176b45;
+}
+
+.calendarDay {
+    border: none;
+    border-radius: 5px;
+    background: #f1f4f2;
+    color: #222222;
+    cursor: pointer;
+}
+
+.calendarDay.today {
+    background: #176b45;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.calendarDay:hover {
+    background: #cde8d8;
+    color: #222222;
+}
+
+@media (max-width: 600px) {
+    #calendarBox {
+        position: relative;
+        top: auto;
+        right: auto;
+        width: min(280px, 100%);
+        margin: 10px 0 15px auto;
+    }
+}
+.calendarDay.hasReport {
+    background-color: orange !important;
+    color: white !important;
+    border: 1px solid darkorange;
+    font-weight: bold;
+}
+/* Test Message Section */
+#testMessage {
+    width: 190px;
+    height: 90px;
+    box-sizing: border-box;
+    display: block;
+    margin: 8px 0;
+    padding: 8px;
+    background: #eaf5fc;
+    color: #222222;
+    border: 1px solid #9bbbd0;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+/* Auto Fill Button */
+#autoFill {
+    display: block;
+    margin-top: 8px;
+    padding: 7px 12px;
+    background: #176b45;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+}
+/* Test Message beside Calendar */
+/* Test Message Section */
+#testMessageSection {
+    position: absolute;
+    top: 110px;
+    right: 310px;
+    width: 300px;
+    margin: 0;
+    padding: 12px;
+    box-sizing: border-box;
+    background: #e8f5e9;
+    border-radius: 10px;
+    z-index: 10;
+}
+
+#testMessageSection label {
+    display: block;
+    color: #176b45;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+#testMessage {
+    width: 100%;
+    min-height: 80px;
+    box-sizing: border-box;
+    font-size: 13px;
+}
+
+#autoFill {
+    display: block;
+    margin-top: 8px;
+}
+
+#testMessageSection textarea {
+    background-color: #fff4cc;
+    color: #222222;
+    border: 1px solid #c9a227;
+    border-radius: 6px;
+}
+#testMessageSection label {
+    color: #176b45;
+    font-weight: bold;
+}
+/* Date and Time Box */
+#dateTimeBox {
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    background-color: #176b45;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#dateTimeBox p {
+    margin: 0;
+    color: white;
+}
