@@ -1,4 +1,4 @@
-const CACHE_NAME = "kalikiri-dashboard-v5";
+const CACHE_NAME = "kalikiri-dashboard-v6";
 
 const FILES_TO_CACHE = [
     "./",
