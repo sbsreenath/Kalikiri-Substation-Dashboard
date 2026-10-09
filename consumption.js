@@ -921,6 +921,27 @@ function generateReportFunction() {
 
 
     window.lastReport = report;
+    /* =========================
+SAVE REPORT DATE-WISE
+========================= */
+
+const selectedDate =
+document.getElementById("reportDate").value;
+
+if (selectedDate) {
+const savedReports =
+JSON.parse(
+localStorage.getItem("kalikiriReports") || "{}"
+);
+
+savedReports[selectedDate] = report;
+
+localStorage.setItem(
+    "kalikiriReports",
+    JSON.stringify(savedReports)
+);
+
+}
 
 
     /* =====================================================
@@ -2175,3 +2196,166 @@ window.open(
 
     }
 );
+/* Monthly Calendar */
+const calendarMonth = document.getElementById("calendarMonth");
+const calendarDays = document.getElementById("calendarDays");
+const prevMonth = document.getElementById("prevMonth");
+const nextMonth = document.getElementById("nextMonth");
+
+let calendarDate = new Date();
+
+function renderCalendar() {
+    const year = calendarDate.getFullYear();
+    const month = calendarDate.getMonth();
+
+    calendarMonth.textContent =
+        calendarDate.toLocaleDateString("en-IN", {
+            month: "long",
+            year: "numeric"
+        });
+
+    calendarDays.innerHTML = "";
+
+    ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+        .forEach(day => {
+            const heading = document.createElement("div");
+            heading.className = "calendarWeekday";
+            heading.textContent = day;
+            calendarDays.appendChild(heading);
+        });
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const today = new Date();
+
+    for (let i = 0; i < firstDay; i++) {
+        calendarDays.appendChild(document.createElement("div"));
+    }
+
+    for (let day = 1; day <= daysInMonth; day++) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "calendarDay";
+        button.textContent = day;
+        const selectedDate = new Date(year, month, day);
+        const dateKey = [
+    selectedDate.getFullYear(),
+    String(selectedDate.getMonth() + 1).padStart(2, "0"),
+    String(selectedDate.getDate()).padStart(2, "0")
+].join("-");
+
+const savedReports = JSON.parse(
+    localStorage.getItem("kalikiriReports") || "{}"
+);
+
+if (savedReports[dateKey]) {
+    button.title = "Saved Report Available";
+    button.classList.add("hasReport");
+    button.addEventListener("mouseenter", () => {
+    if (savedReports[dateKey]) {
+        const report = savedReports[dateKey];
+
+       const popup = document.createElement("div");
+popup.textContent = report;
+popup.style.cssText = `
+    position: fixed;
+top: 10%;
+left: 60%;
+transform: translateX(-50%);
+width: 340px;
+max-width: 90vw;
+height: 70vh;
+overflow-y: auto;
+overscroll-behavior: contain;
+-webkit-overflow-scrolling: touch;
+white-space: pre-wrap;
+background: white;
+color: black;
+padding: 20px;
+border: 2px solid green;
+border-radius: 10px;
+z-index: 99999;
+`;
+document.body.appendChild(popup);
+popup.addEventListener("mouseenter", () => {
+    popup.dataset.keepOpen = "true";
+});
+let closeTimer;
+
+button.addEventListener("mouseleave", () => {
+    closeTimer = setTimeout(() => {
+        if (!popup.matches(":hover")) {
+            popup.remove();
+        }
+    }, 300);
+});
+
+popup.addEventListener("mouseenter", () => {
+    clearTimeout(closeTimer);
+});
+
+popup.addEventListener("mouseleave", () => {
+    popup.remove();
+});
+    }
+});
+} else {
+    button.title = "No report saved for this date";
+}
+        if (
+            day === today.getDate() &&
+            month === today.getMonth() &&
+            year === today.getFullYear()
+        ) {
+            button.classList.add("today");
+        }
+
+        button.addEventListener("click", () => {
+         
+            const dateString = [
+                selectedDate.getFullYear(),
+                String(selectedDate.getMonth() + 1).padStart(2, "0"),
+                String(selectedDate.getDate()).padStart(2, "0")
+            ].join("-");
+
+            document.getElementById("reportDate").value = dateString;
+            document.getElementById("reportDate").dispatchEvent(
+                new Event("change", { bubbles: true })
+            );
+        });
+        button.addEventListener("click", () => {
+            const savedReports = JSON.parse(
+                localStorage.getItem("kalikiriReports") || "{}"
+            );
+
+            const report = savedReports[dateKey];
+
+            if (report) {
+                document.getElementById("reportDate").value = dateKey;
+
+if (typeof report === "string") {
+    document.getElementById("reportOutput").textContent = report;
+} else {
+    console.log(report);
+    alert("Report data found. Output element ID needs checking.");
+}
+            } else {
+                alert("No report saved for " + dateKey);
+            }
+        });    
+
+        calendarDays.appendChild(button);
+    }
+}
+
+prevMonth.addEventListener("click", () => {
+    calendarDate.setMonth(calendarDate.getMonth() - 1);
+    renderCalendar();
+});
+
+nextMonth.addEventListener("click", () => {
+    calendarDate.setMonth(calendarDate.getMonth() + 1);
+    renderCalendar();
+});
+
+renderCalendar();
