@@ -15,25 +15,38 @@
 
 </head>
 <body>
+    <div id="calendarBox">
+    <div class="calendarHeader">
+        <button type="button" id="prevMonth">❮</button>
+        <h3 id="calendarMonth"></h3>
+        <button type="button" id="nextMonth">❯</button>
+    </div>
+
+    <div id="calendarDays"></div>
+</div>
     <p>Good Morning Sir.</p>
-    <h1>400 KV SS Kalikiri Consumption Particulars on <form>
-        <label> Date</label>
+    <h1>400 KV SS Kalikiri Consumption Particulars on </h1>
+     <form>
+        <label form="reportDate">Date</label>
         <input type="date" id="reportDate">
-        <label>Test Message</label>
+     </form>
+<div id="testMessageSection">
+    <label for="testMessage">Test Message</label>
 
-<textarea
-    id="testMessage"
-    rows="8"
-    placeholder="Paste today's test message here...">
-</textarea>
+    <textarea
+        id="testMessage"
+        rows="4"
+        placeholder="Paste today's test message here..."></textarea>
 
-<button
-    type="button"
-    id="autoFill">
-    AUTO FILL
-</button>
-    </form></h1>
+    <button type="button" id="autoFill">
+        AUTO FILL
+    </button>
+</div>       
+    </form>
+</h1>
+<div id="dateTimeBox" >   
     <p id="dateTime"></p>
+</div>
     <h2>(1)<u>IMPORT</u></h2>
     <div class="reading">
         <label>RTPP-1  =</label>
@@ -132,6 +145,7 @@
     <label for="reportName">Name:</label>
     <input type="text" id="reportName" placeholder="Enter your name">
     <button id="generateReport">Generate Report</button>
+    <div id="reportOutput" style="white-space: pre-wrap; margin: 15px 0;"></div>
     <button id="shareWhatsApp">📱 Share WhatsApp</button>
     <p id="status">Status : In Service</p>
     <button id="changeStatus">Change Status</button>
