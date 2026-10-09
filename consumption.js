@@ -940,7 +940,9 @@ localStorage.setItem(
     "kalikiriReports",
     JSON.stringify(savedReports)
 );
-
+if (typeof window.saveReportToCloud === "function") {
+    window.saveReportToCloud(selectedDate, report);
+}
 }
 
 
