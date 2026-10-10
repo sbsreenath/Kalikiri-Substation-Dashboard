@@ -7,169 +7,189 @@
     <title>Kalikiri Dashboard Login</title>
 
     <style>
-        * {
-            box-sizing: border-box;
-        }
+    * {
+        box-sizing: border-box;
+    }
 
-        body {
-            margin: 0;
-            min-height: 100vh;
-            min-height: 100dvh;
-            padding: 24px 16px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(
-                135deg,
-                #eaf7ff,
-                #c9e7fb,
-                #a9d5ef
-            );
-            color: #102c54;
-        }
+    body {
+        margin: 0;
+        min-height: 100vh;
+        min-height: 100dvh;
+        padding: 12px;
+        display: flex;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #eaf7ff, #c9e7fb, #a9d5ef);
+        color: #102c54;
+    }
 
+    .login-card {
+        width: 100%;
+        max-width: 350px;
+        margin: auto;
+        padding: 20px 24px;
+        background: #ffffff;
+        border-radius: 18px;
+        box-shadow: 0 12px 35px rgba(16, 66, 110, 0.18);
+    }
+
+    .branding {
+        text-align: center;
+    }
+
+    .logo {
+        display: block;
+        width: 90px;
+        height: 90px;
+        object-fit: contain;
+        margin: 0 auto 10px;
+    }
+
+    .slogan {
+        margin: 0 0 14px;
+        color: #075563;
+        font-size: 11px;
+        font-weight: bold;
+        line-height: 1.4;
+        letter-spacing: 0.6px;
+    }
+
+    h1 {
+        margin: 0;
+        color: #144b8b;
+        font-size: clamp(18px, 5.5vw, 23px);
+        font-weight: 800;
+        line-height: 1.25;
+    }
+
+    .station-name {
+        margin: 6px 0 18px;
+        color: #0865bd;
+        font-size: 25px;
+        font-weight: 800;
+        letter-spacing: 2px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    input {
+        width: 100%;
+        height: 44px;
+        padding: 0 12px;
+        border: 1px solid #bdcadd;
+        border-radius: 9px;
+        background: #ffffff;
+        color: #102c54;
+        font: inherit;
+        font-size: 16px;
+    }
+
+    input::placeholder {
+        color: #7c8aa1;
+    }
+
+    input:focus {
+        outline: none;
+        border-color: #1285b1;
+        box-shadow: 0 0 0 3px rgba(18, 133, 177, 0.15);
+    }
+
+    .field {
+        margin-bottom: 14px;
+    }
+
+    .password-box {
+        position: relative;
+    }
+
+    .password-box input {
+        padding-right: 68px;
+    }
+
+    .show-password {
+        position: absolute;
+        top: 0;
+        right: 4px;
+        height: 44px;
+        padding: 0 10px;
+        border: none;
+        background: transparent;
+        color: #0865a0;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    #loginBtn {
+        width: 100%;
+        height: 44px;
+        margin-top: 2px;
+        border: none;
+        border-radius: 9px;
+        background: linear-gradient(135deg, #1489b4, #086c93);
+        color: white;
+        font-size: 17px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        cursor: pointer;
+    }
+
+    #loginBtn:hover {
+        box-shadow: 0 5px 14px rgba(8, 108, 147, 0.25);
+    }
+
+    button:focus-visible {
+        outline: 3px solid #0865bd;
+        outline-offset: 3px;
+    }
+
+    #message {
+        margin: 10px 0 0;
+        color: #b42318;
+        text-align: center;
+        font-size: 13px;
+        line-height: 1.4;
+        overflow-wrap: anywhere;
+    }
+
+    #message:empty {
+        margin: 0;
+    }
+
+    @media (max-height: 550px) {
         .login-card {
-            width: 100%;
-            max-width: 420px;
-            padding: 30px 28px 22px;
-            background: #ffffff;
-            border-radius: 24px;
-            box-shadow: 0 16px 45px rgba(16, 66, 110, 0.18);
-        }
-
-        .branding {
-            text-align: center;
+            padding: 14px 20px;
         }
 
         .logo {
-            display: block;
-            width: 115px;
-            height: auto;
-            margin: 0 auto 18px;
+            width: 65px;
+            height: 65px;
+            margin-bottom: 6px;
         }
 
         .slogan {
-            margin: 0 0 26px;
-            color: #075563;
-            font-size: 13px;
-            font-weight: bold;
-            line-height: 1.6;
-            letter-spacing: 1px;
-        }
-
-        h1 {
-            margin: 0;
-            font-size: clamp(21px, 6vw, 27px);
-            font-weight: 800;
+            margin-bottom: 8px;
         }
 
         .station-name {
-            margin: 10px 0 28px;
-            color: #0865bd;
-            font-size: 30px;
-            font-weight: 800;
-            letter-spacing: 2px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 9px;
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        input {
-            width: 100%;
-            height: 52px;
-            padding: 0 14px;
-            border: 1px solid #bdcadd;
-            border-radius: 11px;
-            background: #ffffff;
-            color: #102c54;
-            font: inherit;
-            font-size: 16px;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-
-        input::placeholder {
-            color: #7c8aa1;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: #1285b1;
-            box-shadow: 0 0 0 3px rgba(18, 133, 177, 0.15);
+            margin-bottom: 12px;
         }
 
         .field {
-            margin-bottom: 22px;
+            margin-bottom: 10px;
         }
+    }
 
-        .password-box {
-            position: relative;
+    @media (max-width: 360px) {
+        .login-card {
+            padding-left: 18px;
+            padding-right: 18px;
         }
-
-        .password-box input {
-            padding-right: 72px;
-        }
-
-        .show-password {
-            position: absolute;
-            top: 0;
-            right: 5px;
-            height: 52px;
-            padding: 0 10px;
-            border: none;
-            background: transparent;
-            color: #0865a0;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        #loginBtn {
-            width: 100%;
-            height: 54px;
-            margin-top: 5px;
-            border: none;
-            border-radius: 11px;
-            background: linear-gradient(135deg, #1489b4, #086c93);
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: box-shadow 0.2s;
-        }
-
-        #loginBtn:hover {
-            box-shadow: 0 6px 18px rgba(8, 108, 147, 0.25);
-        }
-
-        button:focus-visible {
-            outline: 3px solid #0865bd;
-            outline-offset: 3px;
-        }
-
-        #message {
-            margin: 16px 0 0;
-            color: #b42318;
-            text-align: center;
-            font-size: 14px;
-            line-height: 1.5;
-            overflow-wrap: anywhere;
-        }
-
-        #message:empty {
-            margin: 0;
-        }
-
-        @media (max-width: 360px) {
-            .login-card {
-                padding: 25px 20px;
-            }
-        }
-    </style>
+    }
+</style>
 </head>
 
 <body>
