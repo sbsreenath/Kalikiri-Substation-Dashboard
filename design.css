@@ -486,3 +486,64 @@ label{
     background: #e8eef5;
     color: #102c54;
 }
+.date-test-row {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 16px 0;
+}
+
+.date-section {
+    flex: 0 0 200px;
+    max-width: 100%;
+    margin: 0;
+}
+
+.date-section label {
+    display: block;
+    width: auto;
+    margin-bottom: 8px;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.date-section #reportDate {
+    display: block;
+    width: 180px;
+    max-width: 100%;
+    margin: 0;
+}
+
+.date-test-row #testMessageSection {
+    position: static;
+    flex: 0 1 300px;
+    width: 300px;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+}
+
+.date-test-row #testMessageSection label {
+    width: auto;
+    margin: 0 0 8px;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.date-test-row #testMessage {
+    width: 100%;
+    margin: 0;
+}
+
+@media screen and (max-width: 600px) {
+    .date-test-row {
+        gap: 16px;
+    }
+
+    .date-test-row #testMessageSection {
+        flex-basis: 100%;
+        width: 100%;
+    }
+}
