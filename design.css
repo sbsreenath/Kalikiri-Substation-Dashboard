@@ -234,3 +234,155 @@ label{
     margin: 0;
     color: white;
 }
+/* MOBILE DASHBOARD LAYOUT ONLY */
+@media screen and (max-width: 600px) {
+
+    body {
+        margin: 12px;
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 23px;
+        line-height: 1.3;
+        margin: 16px 0;
+    }
+
+    h2 {
+        font-size: 19px;
+        line-height: 1.5;
+        margin: 18px 0 10px;
+    }
+
+    /* Calendar fits inside the phone */
+    #calendarBox {
+        position: static;
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto 16px;
+        padding: 10px;
+    }
+
+    .calendarHeader h3 {
+        font-size: 16px;
+    }
+
+    /* Test message stays inside the screen */
+    #testMessageSection {
+        position: static;
+        width: 100%;
+        margin: 16px 0;
+        padding: 12px;
+    }
+
+    #testMessageSection label {
+        width: auto;
+    }
+
+    #testMessage {
+        width: 100%;
+        height: 100px;
+        margin: 8px 0;
+        font-size: 16px;
+    }
+
+    #autoFill {
+        min-height: 40px;
+        font-size: 14px;
+    }
+
+    /* Date/time no longer overlaps the calendar */
+    #dateTimeBox {
+        position: static;
+        width: fit-content;
+        max-width: 100%;
+        margin: 12px 0;
+        padding: 9px 12px;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    /* Keep label, value and unit aligned */
+    .reading {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 12px;
+    }
+
+    .reading label {
+        flex: 0 0 42%;
+        width: auto;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .reading input {
+        width: 42%;
+        min-width: 0;
+        margin: 0;
+        padding: 8px;
+        font-size: 16px;
+    }
+
+    /* Rows containing both a value and a time */
+    .reading:has(input + input) label {
+        flex-basis: 100%;
+    }
+
+    .reading:has(input + input) input {
+        width: 30%;
+    }
+
+    /* Inputs within MD / generation / reactor headings */
+    h2 input {
+        width: 120px;
+        max-width: 100%;
+        margin: 4px;
+        font-size: 16px;
+        vertical-align: middle;
+    }
+
+    label {
+        max-width: 100%;
+    }
+
+    input {
+        max-width: 100%;
+    }
+
+    #reportDate {
+        width: 170px;
+        margin-left: 0;
+        font-size: 16px;
+    }
+
+    #Interruptions,
+    .interruptions {
+        width: 100%;
+        min-height: 90px;
+        padding: 10px;
+        box-sizing: border-box;
+        font-size: 16px;
+        resize: vertical;
+    }
+
+    #reportName {
+        width: 100%;
+        margin: 8px 0 12px;
+        font-size: 16px;
+    }
+
+    #generateReport,
+    #shareWhatsApp,
+    #changeStatus {
+        display: block;
+        width: 100%;
+        min-height: 44px;
+        margin: 10px 0;
+        padding: 10px;
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+}
