@@ -386,3 +386,103 @@ label{
         font-size: 16px;
     }
 }
+/* Account at top right */
+#userAccountBox {
+    position: static;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 0 18px auto;
+    text-align: right;
+}
+
+#userAccountBox #dateTimeBox {
+    position: static;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 0 8px auto;
+}
+
+#loggedInEmail {
+    margin: 0 0 8px;
+    color: #0057c2;
+    font-size: 14px;
+    font-weight: bold;
+    overflow-wrap: anywhere;
+}
+
+#logoutBtn {
+    padding: 8px 18px;
+    border: 1px solid #b42318;
+    border-radius: 6px;
+    background: white;
+    color: #b42318;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+#logoutBtn:hover,
+#logoutBtn:focus-visible {
+    background: #b42318;
+    color: white;
+}
+
+#logoutBtn:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+/* Keep desktop calendar below account details */
+@media screen and (min-width: 601px) {
+    #calendarBox {
+        top: 160px;
+    }
+}
+
+/* Logout confirmation */
+#logoutDialog {
+    width: calc(100% - 32px);
+    max-width: 340px;
+    padding: 24px;
+    border: none;
+    border-radius: 14px;
+    text-align: center;
+    color: #102c54;
+    background: white;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+}
+
+#logoutDialog::backdrop {
+    background: rgba(0, 0, 0, 0.45);
+}
+
+#logoutDialog p {
+    margin: 0 0 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.logout-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.logout-actions button {
+    min-width: 90px;
+    min-height: 42px;
+    border: none;
+    border-radius: 7px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#confirmLogoutYes {
+    background: #b42318;
+    color: white;
+}
+
+#confirmLogoutNo {
+    background: #e8eef5;
+    color: #102c54;
+}
