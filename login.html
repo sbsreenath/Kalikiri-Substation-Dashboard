@@ -1,27 +1,253 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Kalikiri Dashboard Login</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            min-height: 100dvh;
+            padding: 24px 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(
+                135deg,
+                #eaf7ff,
+                #c9e7fb,
+                #a9d5ef
+            );
+            color: #102c54;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 420px;
+            padding: 30px 28px 22px;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 16px 45px rgba(16, 66, 110, 0.18);
+        }
+
+        .branding {
+            text-align: center;
+        }
+
+        .logo {
+            display: block;
+            width: 115px;
+            height: auto;
+            margin: 0 auto 18px;
+        }
+
+        .slogan {
+            margin: 0 0 26px;
+            color: #075563;
+            font-size: 13px;
+            font-weight: bold;
+            line-height: 1.6;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(21px, 6vw, 27px);
+            font-weight: 800;
+        }
+
+        .station-name {
+            margin: 10px 0 28px;
+            color: #0865bd;
+            font-size: 30px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 9px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            height: 52px;
+            padding: 0 14px;
+            border: 1px solid #bdcadd;
+            border-radius: 11px;
+            background: #ffffff;
+            color: #102c54;
+            font: inherit;
+            font-size: 16px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input::placeholder {
+            color: #7c8aa1;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #1285b1;
+            box-shadow: 0 0 0 3px rgba(18, 133, 177, 0.15);
+        }
+
+        .field {
+            margin-bottom: 22px;
+        }
+
+        .password-box {
+            position: relative;
+        }
+
+        .password-box input {
+            padding-right: 72px;
+        }
+
+        .show-password {
+            position: absolute;
+            top: 0;
+            right: 5px;
+            height: 52px;
+            padding: 0 10px;
+            border: none;
+            background: transparent;
+            color: #0865a0;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #loginBtn {
+            width: 100%;
+            height: 54px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 11px;
+            background: linear-gradient(135deg, #1489b4, #086c93);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: box-shadow 0.2s;
+        }
+
+        #loginBtn:hover {
+            box-shadow: 0 6px 18px rgba(8, 108, 147, 0.25);
+        }
+
+        button:focus-visible {
+            outline: 3px solid #0865bd;
+            outline-offset: 3px;
+        }
+
+        #message {
+            margin: 16px 0 0;
+            color: #b42318;
+            text-align: center;
+            font-size: 14px;
+            line-height: 1.5;
+            overflow-wrap: anywhere;
+        }
+
+        #message:empty {
+            margin: 0;
+        }
+
+        @media (max-width: 360px) {
+            .login-card {
+                padding: 25px 20px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <h2>KALIKIRI 400 KV SUBSTATION</h2>
-    <h3>Employee Login</h3>
+    <main class="login-card">
 
-    <label>Email ID:</label>
-    <input type="text" id="employeeId">
+        <div class="branding">
+            <img
+                src="aptransco-logo.png"
+                alt="APTRANSCO Logo"
+                class="logo"
+            >
 
-    <br><br>
+            <p class="slogan">
+                ENERGY SAVED IS ENERGY<br>
+                GENERATED
+            </p>
 
-    <label>Password:</label>
-    <input type="password" id="password">
+            <h1>400KV SUBSTATION</h1>
+            <p class="station-name">KALIKIRI</p>
+        </div>
 
-    <br><br>
+        <div class="field">
+            <label for="employeeId">Email ID</label>
+            <input
+                type="email"
+                id="employeeId"
+                placeholder="Enter email address"
+                autocomplete="username"
+                autocapitalize="none"
+                spellcheck="false"
+            >
+        </div>
 
-    <button type="button" id="loginBtn">LOGIN</button>
+        <div class="field">
+            <label for="password">Password</label>
 
-    <p id="message"></p>
+            <div class="password-box">
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter password"
+                    autocomplete="current-password"
+                >
+
+                <button
+                    type="button"
+                    class="show-password"
+                    id="showPassword"
+                    aria-controls="password"
+                    aria-label="Show password"
+                    aria-pressed="false"
+                >Show</button>
+            </div>
+        </div>
+
+        <button type="button" id="loginBtn">LOGIN</button>
+
+        <p id="message" role="status" aria-live="polite"></p>
+
+    </main>
+
+    <script>
+        const showPassword = document.getElementById("showPassword");
+        const passwordInput = document.getElementById("password");
+
+        showPassword.addEventListener("click", function () {
+            const show = passwordInput.type === "password";
+
+            passwordInput.type = show ? "text" : "password";
+            showPassword.textContent = show ? "Hide" : "Show";
+            showPassword.setAttribute("aria-pressed", String(show));
+            showPassword.setAttribute(
+                "aria-label",
+                show ? "Hide password" : "Show password"
+            );
+        });
+    </script>
 
     <script type="module" src="login.js"></script>
 
