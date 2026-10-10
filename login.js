@@ -19,7 +19,7 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
 
     try {
         await signInWithEmailAndPassword(auth, email, password);
-        window.location.href = "index.html";
+        window.location.href = "Consumption%20Particulars.html";
     } catch (error) {
         message.textContent = "Login failed. Check your Email ID and Password.";
     }
