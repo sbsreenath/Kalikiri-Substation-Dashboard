@@ -62,10 +62,7 @@ onAuthStateChanged(auth, (user) => {
         return;
     }
 
-    const reportsQuery = query(
-        collection(db, "dailyReports"),
-        where("savedBy", "==", user.uid)
-    );
+    const reportsQuery = collection(db, "dailyReports");
 
     stopCloudListener = onSnapshot(
         reportsQuery,
